@@ -27,9 +27,22 @@ const TreeNode = ({data}: {data: TreeNode}) => {
 }
 
 const Tree = () => {
+
+  const reverseTree = (tree: TreeNode): TreeNode => {
+    if (!tree.children || tree.children.length === 0) {
+      return {...tree};
+    }
+
+    const reversedChildren = tree.children.map(child => reverseTree(child)).reverse();
+
+    return {...tree, children: reversedChildren};
+  }
+
+  const reversedData: TreeNode = reverseTree(data);
+
   return (
     <div className="tree">
-      <TreeNode data={data}/>
+      <TreeNode data={reversedData}/>
     </div>
   );
 };
