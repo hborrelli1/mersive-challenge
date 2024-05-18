@@ -1,22 +1,35 @@
 import "./index.css";
+import data from './data.json'
+
+type TreeNode = {
+  node: string;
+  children?: TreeNode[];
+}
+
+const TreeNode = ({data}: {data: TreeNode}) => {
+  if (!data.children) {
+    return (
+      <div>{data.node}</div>
+    )
+  }
+
+  return (
+    <>
+      {data.node}
+      <div>
+        {data.children.map((el, index) => (
+          <TreeNode key={index} data={el} />
+        ))}
+      </div>
+    </>
+  
+  )
+}
 
 const Tree = () => {
   return (
     <div className="tree">
-      root
-      <div>ant</div>
-      <div>
-        bear
-        <div>cat</div>
-        <div>
-          dog
-          <div>elephant</div>
-        </div>
-      </div>
-      <div>
-        frog
-        <div>dolphin</div>
-      </div>
+      <TreeNode data={data}/>
     </div>
   );
 };
