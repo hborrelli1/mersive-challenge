@@ -6,19 +6,19 @@ type TreeNode = {
   children?: TreeNode[];
 }
 
-const TreeNode = ({data}: {data: TreeNode}) => {
+const TreeNode = ({data, level = '1'}: {data: TreeNode, level: string}) => {
   if (!data.children) {
     return (
-      <div>{data.node}</div>
+      <div>{level} {data.node}</div>
     )
   }
 
   return (
     <>
-      {data.node}
+      {level} {data.node}
       <div>
         {data.children.map((el, index) => (
-          <TreeNode key={index} data={el} />
+          <TreeNode key={index} data={el} level={`${level}.${index+1}`} />
         ))}
       </div>
     </>
@@ -28,21 +28,21 @@ const TreeNode = ({data}: {data: TreeNode}) => {
 
 const Tree = () => {
 
-  const reverseTree = (tree: TreeNode): TreeNode => {
-    if (!tree.children || tree.children.length === 0) {
-      return {...tree};
-    }
+  // const reverseTree = (tree: TreeNode): TreeNode => {
+  //   if (!tree.children || tree.children.length === 0) {
+  //     return {...tree};
+  //   }
 
-    const reversedChildren = tree.children.map(child => reverseTree(child)).reverse();
+  //   const reversedChildren = tree.children.map(child => reverseTree(child)).reverse();
 
-    return {...tree, children: reversedChildren};
-  }
+  //   return {...tree, children: reversedChildren};
+  // }
 
-  const reversedData: TreeNode = reverseTree(data);
+  // const reversedData: TreeNode = reverseTree(data);
 
   return (
     <div className="tree">
-      <TreeNode data={reversedData}/>
+      <TreeNode data={data} level={'1'}/>
     </div>
   );
 };
