@@ -4,3 +4,7 @@
   padding: 10px;
   font-family: monospace;
 }
+
+.tree div {
+  margin-left: 38px;
+}
