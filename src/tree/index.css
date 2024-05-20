@@ -5,6 +5,26 @@
   font-family: monospace;
 }
 
-.tree div {
+.tree .node {
   margin-left: 38px;
+}
+
+.add-node-input {
+  margin-top: 4px;
+  font-size: 12px;
+  padding: 5px;
+  border: 1px solid #c6c6c6;
+  border-radius: 4px;
+}
+
+.delete-button {
+  border: unset;
+  color: red;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: all .3s;
+}
+
+.delete-button:hover {
+  background: #ddd;
 }
